@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:remote_mouse/providers/settings_provider.dart';
 import 'package:remote_mouse/providers/theme_provider.dart';
+import 'package:remote_mouse/widgets/onboarding_reset_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
-  // App version - Update this with your actual version
   static const String appVersion = '1.0.0';
   static const String appBuild = '1';
 
@@ -97,6 +97,8 @@ class SettingsScreen extends StatelessWidget {
             margin: EdgeInsets.zero,
             child: Column(
               children: [
+                // const Divider(height: 1, indent: 16, endIndent: 16),
+                // const OnboardingResetButton(), // Add this import at the top
                 SwitchListTile(
                   title: const Text('Haptic Feedback'),
                   subtitle: const Text('Vibrate on interactions'),
@@ -269,13 +271,16 @@ class SettingsScreen extends StatelessWidget {
                   title: const Text('Download Desktop App'),
                   subtitle: const Text('Install the companion app on your PC'),
                   trailing: Icon(
-                    Icons.arrow_forward_ios_rounded,
+                    Icons.open_in_new_rounded,
                     size: 16,
                     color: colorScheme.onSurfaceVariant,
                   ),
                   onTap: () {
-                    // TODO: Navigate to desktop client download page
-                    _showComingSoonDialog(context);
+                    launchUrl(
+                      Uri.parse(
+                        "https://github.com.waniathar/remote_mouse_server/blob/main/README.md",
+                      ),
+                    );
                   },
                 ),
                 const Divider(height: 1, indent: 16, endIndent: 16),
@@ -287,13 +292,16 @@ class SettingsScreen extends StatelessWidget {
                   title: const Text('Setup Guide'),
                   subtitle: const Text('Learn how to connect your devices'),
                   trailing: Icon(
-                    Icons.arrow_forward_ios_rounded,
+                    Icons.open_in_new_rounded,
                     size: 16,
                     color: colorScheme.onSurfaceVariant,
                   ),
                   onTap: () {
-                    // TODO: Navigate to setup guide
-                    _showComingSoonDialog(context);
+                    launchUrl(
+                      Uri.parse(
+                        "https://github.com.waniathar/remote_mouse_server/blob/main/README.md",
+                      ),
+                    );
                   },
                 ),
               ],
@@ -329,32 +337,6 @@ class SettingsScreen extends StatelessWidget {
                 const Divider(height: 1, indent: 16, endIndent: 16),
                 ListTile(
                   leading: Icon(
-                    Icons.code_rounded,
-                    color: colorScheme.onSurfaceVariant,
-                  ),
-                  title: const Text('Open Source'),
-                  subtitle: const Text('View source code on GitHub'),
-                  trailing: Icon(
-                    Icons.open_in_new_rounded,
-                    size: 16,
-                    color: colorScheme.onSurfaceVariant,
-                  ),
-                  onTap: () async {
-                    // TODO: Replace with your actual GitHub URL
-                    final uri = Uri.parse(
-                      'https://github.com/yourusername/remote-mouse',
-                    );
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(
-                        uri,
-                        mode: LaunchMode.externalApplication,
-                      );
-                    }
-                  },
-                ),
-                const Divider(height: 1, indent: 16, endIndent: 16),
-                ListTile(
-                  leading: Icon(
                     Icons.bug_report_rounded,
                     color: colorScheme.onSurfaceVariant,
                   ),
@@ -368,7 +350,7 @@ class SettingsScreen extends StatelessWidget {
                   onTap: () async {
                     // TODO: Replace with your actual issues URL
                     final uri = Uri.parse(
-                      'https://github.com/waniathar/remote-mouse/issues',
+                      'https://github.com/waniathar/remote_mouse_client/issues',
                     );
                     if (await canLaunchUrl(uri)) {
                       await launchUrl(
@@ -397,7 +379,6 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     onTap: () {
                       // TODO: Navigate to privacy policy
-                      _showComingSoonDialog(context);
                     },
                   ),
                 ),
@@ -477,42 +458,29 @@ class SettingsScreen extends StatelessWidget {
                       _SocialButton(
                         icon: Icons.web,
                         label: 'X/Twitter',
-                        onTap: () async {
+                        onTap: () {
                           final uri = Uri.parse(
                             'https://twitter.com/waniatharr',
                           );
-                          if (await canLaunchUrl(uri)) {
-                            await launchUrl(
-                              uri,
-                              mode: LaunchMode.externalApplication,
-                            );
-                          }
+                          launchUrl(uri);
                         },
                       ),
                       _SocialButton(
                         icon: Icons.code_rounded,
                         label: 'GitHub',
-                        onTap: () async {
-                          // TODO: Replace with your GitHub
+                        onTap: () {
                           final uri = Uri.parse('https://github.com/waniathar');
-                          if (await canLaunchUrl(uri)) {
-                            await launchUrl(
-                              uri,
-                              mode: LaunchMode.externalApplication,
-                            );
-                          }
+                          launchUrl(uri);
                         },
                       ),
                       _SocialButton(
                         icon: Icons.email_rounded,
                         label: 'Email',
-                        onTap: () async {
+                        onTap: () {
                           final uri = Uri.parse(
                             'mailto:atharwani001@gmail.com',
                           );
-                          if (await canLaunchUrl(uri)) {
-                            await launchUrl(uri);
-                          }
+                          launchUrl(uri);
                         },
                       ),
                     ],
@@ -558,25 +526,6 @@ class SettingsScreen extends StatelessWidget {
           'Features gyroscope-based motion tracking for smooth cursor control.',
         ),
       ],
-    );
-  }
-
-  void _showComingSoonDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        icon: const Icon(Icons.schedule_rounded),
-        title: const Text('Coming Soon'),
-        content: const Text(
-          'This feature is currently under development and will be available in a future update.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
     );
   }
 }

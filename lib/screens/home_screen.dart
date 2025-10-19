@@ -548,7 +548,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
   Widget _buildMouseButtons(
     BuildContext context,
     SettingsProvider settings,
@@ -717,11 +716,11 @@ class MouseWheel extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
             child: ListWheelScrollView.useDelegate(
               controller: controller,
-              itemExtent: 8,
+              itemExtent: 5,
               diameterRatio: 1.2,
               childDelegate: ListWheelChildBuilderDelegate(
                 builder: (_, __) => Container(
-                  color: colorScheme.onTertiaryContainer.withOpacity(0.5),
+                  color: colorScheme.onTertiaryContainer.withValues(alpha: 0.5),
                 ),
               ),
             ),

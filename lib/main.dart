@@ -6,6 +6,7 @@ import 'package:remote_mouse/providers/settings_provider.dart';
 import 'package:remote_mouse/providers/theme_provider.dart';
 import 'package:remote_mouse/providers/web_socket_provider.dart';
 import 'package:remote_mouse/screens/home_screen.dart';
+import 'package:remote_mouse/screens/splash_screen.dart';
 
 void main() {
   runApp(
@@ -28,7 +29,7 @@ void main() {
             return settings!..loadPreferences();
           },
         ),
-        ChangeNotifierProvider(create: (_)=>WebSocketProvider())
+        ChangeNotifierProvider(create: (_) => WebSocketProvider()),
       ],
       child: const MyApp(),
     ),
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
           ThemeProvider.darkTheme.textTheme,
         ),
       ),
-      home: const HomeScreen(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
