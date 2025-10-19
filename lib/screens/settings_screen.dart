@@ -278,7 +278,7 @@ class SettingsScreen extends StatelessWidget {
                   onTap: () {
                     launchUrl(
                       Uri.parse(
-                        "https://github.com.waniathar/remote_mouse_server/blob/main/README.md",
+                        "https://github.com/waniathar/remote_mouse_server/blob/main/README.md",
                       ),
                     );
                   },
@@ -299,7 +299,7 @@ class SettingsScreen extends StatelessWidget {
                   onTap: () {
                     launchUrl(
                       Uri.parse(
-                        "https://github.com.waniathar/remote_mouse_server/blob/main/README.md",
+                        "https://github.com/waniathar/remote_mouse_server/blob/main/README.md",
                       ),
                     );
                   },
