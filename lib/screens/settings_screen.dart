@@ -347,17 +347,11 @@ class SettingsScreen extends StatelessWidget {
                     size: 16,
                     color: colorScheme.onSurfaceVariant,
                   ),
-                  onTap: () async {
-                    // TODO: Replace with your actual issues URL
+                  onTap: () {
                     final uri = Uri.parse(
                       'https://github.com/waniathar/remote_mouse_client/issues',
                     );
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(
-                        uri,
-                        mode: LaunchMode.externalApplication,
-                      );
-                    }
+                    launchUrl(uri);
                   },
                 ),
                 Visibility(
@@ -522,7 +516,7 @@ class SettingsScreen extends StatelessWidget {
       children: [
         const SizedBox(height: 16),
         const Text(
-          'Control your computer remotely using your phone as a mouse and keyboard. '
+          'Control your computer remotely using your phone as a mouse. '
           'Features gyroscope-based motion tracking for smooth cursor control.',
         ),
       ],
